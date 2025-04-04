@@ -3,17 +3,41 @@ class AndCutter {
     static html() {
         return `
         <div class="and-cutter">
-            <p>Trim your url to a single query url.</p>
-            <div class="input-group">
-                <label for="text">Text</label>
-                <textarea id="text" rows="4" cols="50"></textarea>
-            </div>
-            <div class="output-group">
-                <label for="output">Output</label>
-                <textarea id="output" rows="4" cols="50"></textarea>
-            </div>
-            <button id="copy-button">Copy</button>
+            ${AndCutter.descriptionHtml()}
+            ${AndCutter.inputHtml()}
+            ${AndCutter.outputHtml()}
+            ${AndCutter.copyButtonHtml()}
         </div>
+        `;
+    }
+
+    static descriptionHtml() {
+        return `
+        <p>Trim your url to a single query url.</p>
+        `;
+    }
+
+    static inputHtml() {
+        return `
+        <div class="input-group">
+            <label for="text">Text</label>
+            <textarea id="text" rows="4" cols="50"></textarea>
+        </div>
+        `;
+    }
+
+    static outputHtml() {
+        return `
+        <div class="output-group">
+            <label for="output">Output</label>
+            <textarea id="output" rows="4" cols="50"></textarea>
+        </div>
+        `;
+    }
+
+    static copyButtonHtml() {
+        return `
+        <button id="copy-button">Copy</button>
         `;
     }
 
@@ -132,6 +156,7 @@ class AndCutter {
             document.execCommand('copy');
         });
     }
+
     static trim(url) {
         const urlParts = url.split('?');
         if (urlParts.length < 2) {

@@ -1,16 +1,24 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))n(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const c of e.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&n(c)}).observe(document,{childList:!0,subtree:!0});function r(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function n(t){if(t.ep)return;t.ep=!0;const e=r(t);fetch(t.href,e)}})();class u{static html(){return`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))u(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const c of e.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&u(c)}).observe(document,{childList:!0,subtree:!0});function n(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function u(t){if(t.ep)return;t.ep=!0;const e=n(t);fetch(t.href,e)}})();class r{static html(){return`
         <div class="and-cutter">
-            <p>Trim your url to a single query url.</p>
-            <div class="input-group">
-                <label for="text">Text</label>
-                <textarea id="text" rows="4" cols="50"></textarea>
-            </div>
-            <div class="output-group">
-                <label for="output">Output</label>
-                <textarea id="output" rows="4" cols="50"></textarea>
-            </div>
-            <button id="copy-button">Copy</button>
+            ${r.descriptionHtml()}
+            ${r.inputHtml()}
+            ${r.outputHtml()}
+            ${r.copyButtonHtml()}
         </div>
+        `}static descriptionHtml(){return`
+        <p>Trim your url to a single query url.</p>
+        `}static inputHtml(){return`
+        <div class="input-group">
+            <label for="text">Text</label>
+            <textarea id="text" rows="4" cols="50"></textarea>
+        </div>
+        `}static outputHtml(){return`
+        <div class="output-group">
+            <label for="output">Output</label>
+            <textarea id="output" rows="4" cols="50"></textarea>
+        </div>
+        `}static copyButtonHtml(){return`
+        <button id="copy-button">Copy</button>
         `}static css(){return`
         <style>
             .and-cutter {
@@ -109,12 +117,12 @@
                 box-shadow: 0 0 5px #007BFF;
             }
         </style>
-        `}static setup(){document.getElementById("text").addEventListener("input",o=>{const r=o.target.value,n=u.trim(r);document.getElementById("output").value=n}),document.getElementById("copy-button").addEventListener("click",()=>{document.getElementById("output").select(),document.execCommand("copy")})}static trim(o){const r=o.split("?");if(r.length<2)return o;const n=r[0],t=r[1].split("&").slice(0,1).join("&");return`${n}?${t}`}}document.querySelector("#app").innerHTML=`
+        `}static setup(){document.getElementById("text").addEventListener("input",o=>{const n=o.target.value,u=r.trim(n);document.getElementById("output").value=u}),document.getElementById("copy-button").addEventListener("click",()=>{document.getElementById("output").select(),document.execCommand("copy")})}static trim(o){const n=o.split("?");if(n.length<2)return o;const u=n[0],t=n[1].split("&").slice(0,1).join("&");return`${u}?${t}`}}document.querySelector("#app").innerHTML=`
   <div>
     <h1>And Cutter!</h1>
     <div class="card">
-      ${u.html()}
+      ${r.html()}
     </div>
   </div>
-  ${u.css()}
-`;u.setup();
+  ${r.css()}
+`;r.setup();
